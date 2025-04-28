@@ -1,5 +1,5 @@
-# Create Proyect Node.js With Typescript
-Estructura basica para crear un proyecto con node usando typescript con administrador de paquetes PNPM
+# URL Shortener
+Trabajo para un acortador de url con backend y frontend
 ## Tabla de Contenidos
 - [Instalación](#instalación)
 - [Dependencias](#dependencias)
@@ -10,7 +10,7 @@ Estructura basica para crear un proyecto con node usando typescript con administ
   ## Instalación
 Clona el repositorio e instalacion de dependencias 
 ```bash
-git clone https://github.com/tu-usuario/url-shortener.git
+git clone https://github.com/RivasJF/URL-Shorneter.git
 pnpm install
 ```
  ## Dependencias

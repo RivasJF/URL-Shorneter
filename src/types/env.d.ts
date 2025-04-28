@@ -4,3 +4,18 @@ declare namespace NodeJS {
       DB_URL: string;
     }
   }
+
+type dataSim = {
+  data: string;
+}
+
+export class ErrorP extends Error {
+  statusCode: number;
+
+  constructor(message: string, statusCode: number) {
+    super(message);
+    this.statusCode = statusCode;
+    // Esta línea es importante para mantener el prototipo correcto
+    Object.setPrototypeOf(this, ErrorP.prototype);
+  }
+}
