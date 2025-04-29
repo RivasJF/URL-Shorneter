@@ -5,9 +5,6 @@ declare namespace NodeJS {
     }
   }
 
-type dataSim = {
-  data: string;
-}
 type URL_request = {
   url_full: string;
 }

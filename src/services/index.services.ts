@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
 import { PrismaClient } from "../generated/prisma/index.js";
-import { testPing, URL_request } from "../types/env.js";
+import { ErrorP, testPing} from "../types/env.d.js";
 //aqui debemos procesar todos los datos y convertilos
 //Ejemplo acortar la url, validar, etc
 const prisma = new PrismaClient()
@@ -16,12 +16,26 @@ export const ping = async () => {
     return (request_db)
 }
 
-export const create_Url = async ({url_full}:URL_request) => {
-    const response_db = await prisma.uRLs.create({
-        data:{
-            url_full:url_full,
-            url_short: nanoid(6)
-        }
-    })
-    return (response_db)
+export const create_Url = async (url_full:string) => {
+    try {
+        const found = await prisma.uRLs.findMany({
+            where:{
+                url_full:url_full
+            }
+        })
+        if (found.length > 0) {
+            throw new ErrorP('URL duplicada', 400);
+          }
+            const response_db = await prisma.uRLs.create({
+                data:{
+                    url_full:url_full,
+                    url_short: nanoid(6)
+                }
+            })
+            return (response_db)
+
+    } catch (error) {
+        if (error instanceof ErrorP) throw error;
+        throw new ErrorP('Error al crear URL', 500);
+    } 
 }

@@ -19,10 +19,10 @@ export const validateDataRequest = [
 ];
 
 export const validateUrlRequest = [
-  check('url')
-    .exists().withMessage('El campo "url" es requerido')
-    .isString().withMessage('El campo "url" debe ser un string')
-    .notEmpty().withMessage('El campo "url" no puede estar vacío'),
+  check('url_full')
+    .exists().withMessage('El campo "url_full" es requerido')
+    .isString().withMessage('El campo "url_full" debe ser un string')
+    .notEmpty().withMessage('El campo "url_full" no puede estar vacío'),
 
   (req: Request, res: Response, next: NextFunction) => {
     const errors = validationResult(req);
