@@ -9,7 +9,11 @@ type dataSim = {
   data: string;
 }
 type URL_request = {
-  url: string;
+  url_full: string;
+}
+
+type testPing = {
+  result:number
 }
 
 

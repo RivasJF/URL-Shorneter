@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  Url-postgres:
+    image: postgres:17.4
+    container_name: postgres_Url
+    environment:
+      POSTGRES_USER: prisma
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: UrlBD
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
