@@ -17,3 +17,19 @@ export const validateDataRequest = [
     next();
   }
 ];
+
+export const validateUrlRequest = [
+  check('url')
+    .exists().withMessage('El campo "url" es requerido')
+    .isString().withMessage('El campo "url" debe ser un string')
+    .notEmpty().withMessage('El campo "url" no puede estar vacío'),
+
+  (req: Request, res: Response, next: NextFunction) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(400).json({ errors: errors.array({ onlyFirstError: true }) });
+      return
+    }
+    next();
+  }
+];
