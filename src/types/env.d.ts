@@ -8,11 +8,21 @@ declare namespace NodeJS {
 type URL_request = {
   url_full: string;
 }
+type URL_request_redirect = {
+  url_short: string;
+}
 
 type testPing = {
   result:number
 }
 
+type url = {
+  url_full: string;
+  id: number;
+  url_short: string;
+  Create_to: Date;
+  Use: number;
+}
 
 export class ErrorP extends Error {
   statusCode: number;

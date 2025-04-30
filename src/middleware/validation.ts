@@ -33,3 +33,19 @@ export const validateUrlRequest = [
     next();
   }
 ];
+
+export const validateUrlShortRequest = [
+  check('url_short')
+    .exists().withMessage('El campo "url_short" es requerido')
+    .isString().withMessage('El campo "url_short" debe ser un string')
+    .notEmpty().withMessage('El campo "url_short" no puede estar vacío'),
+
+  (req: Request, res: Response, next: NextFunction) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(400).json({ errors: errors.array({ onlyFirstError: true }) });
+      return
+    }
+    next();
+  }
+];

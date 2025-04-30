@@ -12,3 +12,13 @@ export const errorHandler = (err: any, req: Request, res: Response, next: NextFu
     }
   });
 };
+
+export const url_discont= (req: Request, res: Response, next: NextFunction) => {
+  //console.error(err); // Para log interno
+
+  const statusCode = 404;
+
+
+  res.status(statusCode).sendFile(process.cwd() + "/pages/404.html")
+
+};

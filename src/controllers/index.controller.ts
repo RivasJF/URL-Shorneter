@@ -1,6 +1,6 @@
 import { Request, Response , NextFunction} from "express";
-import { ErrorP, testPing, URL_request} from "../types/env.d.js";
-import { create_Url, ping, shortener } from "../services/index.services.js";
+import { url, URL_request, URL_request_redirect} from "../types/env.d.js";
+import { create_Url, found_Url, ping } from "../services/index.services.js";
 
 //Aqui deben de llegar las resquest de los usuarios
 export const pagina = (_req: Request, res: Response) => {
@@ -12,6 +12,16 @@ export const data_URL_request =  async (req: Request<{}, {}, URL_request>, res: 
     const { url_full } = req.body;
     const response_db = await create_Url(url_full)
     res.json(response_db);
+  } catch (error) {
+    next(error)
+  }
+}
+
+export const redirect_URL_request =  async (req: Request<URL_request_redirect, {},{}>, res: Response, next:NextFunction)=>{
+  try {
+    const { url_short } = req.params;
+    const response_db = await found_Url(url_short)
+    res.redirect(response_db)
   } catch (error) {
     next(error)
   }
